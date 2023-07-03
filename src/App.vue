@@ -1,41 +1,32 @@
-<script setup>
-import { ref, watch } from 'vue'
-const arr = new Array(10000)
-const animalType = {
-  mie: '🐏',
-  mo: '🐂',
-  miao: '🐱',
-}
-const cry = ref('mie')
-const shouldUpdate = ref(0)
-//` 需求：只有成功输入命中提供的三种叫声 才有资格更新数据
-//` 思路  v-memo
-watch(cry, (newVal) => {
-  if (Object.keys(animalType).includes(newVal)) {
-    shouldUpdate.value++
-  }
-})
-</script>
-
 <template>
-  <div>
-    <input type="text" v-model="cry" />
-    <!-- 只有在shouldUpdate变化时才会进行更新 -->
-    <ul v-memo="[shouldUpdate]">
-      <li v-for="(item, index) in arr" :key="index">
-        {{ cry }}-{{ animalType[cry] }}
-      </li>
-    </ul>
+  <div class="wrap">
+    <p>{{ arr1 }}</p>
+    <p>{{ arr2 }}</p>
+    <p>{{ arr3 }}</p>
+    <button @click="handleArr3">arr3</button>
   </div>
 </template>
 
-<style scoped>
-ul {
-  display: flex;
-  flex-wrap: wrap;
+<script setup>
+import { reactive, ref, shallowRef, triggerRef } from 'vue'
+//· 想要操作arr1置空的话, 要用数组原生的方法 没法给arr1赋值一个新的数组
+let arr1 = reactive([1, 2, 3])
+//~ 使用ref包裹的响应式类型会被自动解包, 所以可以直接赋值一个新的数组,
+let arr2 = ref([1, 2, 3])
+arr2.value = [4, 5, 6]
+//~ ref包裹的东西最终的value是一个proxy,shallowRef最终的value就是一个简单数组
+let arr3 = shallowRef([1, 2, 3])
+function handleArr3() {
+  arr3.value.push(4)
+  //. 但是如果想要改变arr3的值, 就要用triggerRef触发一下
+  triggerRef(arr3)
 }
-ul li {
-  list-style: none;
-  margin: 30px;
+</script>
+
+<style scoped>
+.wrap {
+  background: gray;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
