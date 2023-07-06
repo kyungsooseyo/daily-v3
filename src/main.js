@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 // import App from './App.vue'
 // import App from './customRef.vue'
 // import App from './utilsFn.vue'
-import App from './watch.vue'
+// import App from './watch.vue'
+import App from './watchEffect.vue'
 const app = createApp(App)
 app.mount('#app')
