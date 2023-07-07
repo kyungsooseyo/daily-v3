@@ -10,9 +10,9 @@
 <script setup>
 const props = defineProps({
   modelValue: String,
-  xx:Boolean
+  xx: Boolean
 })
-const emit=defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 function changeName() {
   emit('update:modelValue', '嘻嘻')
 }

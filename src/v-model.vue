@@ -14,6 +14,7 @@
     <!--~ 组件的$event 就是从子组件传递过来的数据 -->
     <my-child :model-value="name" @update:model-value="name=$event"></my-child>
     <my-child v-model="name" v-model:xx="flag"></my-child>
+    <p hidden>asdadasdasd</p>
   </div>
 </template>
 
