@@ -7,6 +7,7 @@ import { createApp } from 'vue'
 // import App from './watchEffect.vue'
 // import App from './v-model.vue'
 // import App from './slot.vue'
-import App from './attr.vue'
+// import App from './attr.vue'
+import App from './comp.vue' // 动态组件
 const app = createApp(App)
 app.mount('#app')
