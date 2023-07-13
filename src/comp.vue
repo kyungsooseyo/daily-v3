@@ -9,9 +9,13 @@
     <!-- <component :is='asyncChild1'></component> -->
     <!--~ 通过这种方式就可以看出来只有点击的时候才会加载 那个vue文件 -->
     <div>
-      <button v-for="(item, index) in compList" :key="index" @click="activeIdx=index">{{ item.name }}</button>
+      <button v-for="(item, index) in compList" :key="index" @click="activeIdx = index">{{ item.name }}</button>
     </div>
     <component :is='compList[activeIdx].component'></component>
+    <hr />
+    <input type="text" name="" id="" v-model="msg">
+    <button v-copy="msg">copy</button>
+
   </div>
 </template>
 
@@ -37,7 +41,8 @@ const compList = [
     component: asyncChild3
   }
 ]
-const activeIdx=ref(0)
+const activeIdx = ref(0)
+const msg = ref('hello')
 </script>
 
 <style lang="scss" scoped></style>
