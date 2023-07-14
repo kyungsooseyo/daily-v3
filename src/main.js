@@ -33,4 +33,24 @@ app.directive('copy', (el, binding) => {
     await navigator.clipboard.writeText(value)
   }
 })
+//- 1 插件本身是一个对象，里面有install方法 会在use的时候执行
+// let muPlugin = {
+//   install(app, option) {
+//     console.log(app, option);
+//   }
+// }
+//- 2 插件本身是一个函数，会在use的时候执行
+let muPlugin = function (app, option) {
+  // 在插件里面可以注册一堆全局的东西
+  app.config.globalProperties.$myName = option.name
+  app.config.globalProperties.sayHi = () => {
+    console.log('hi');
+  }
+  app.components('MyButton', 'div')
+  app.directives('hh', () => {
+    console.log('hh');
+  })
+  app.provide('age', 13)
+}
+app.use(muPlugin, { name: '哈哈' })
 app.mount('#app')
