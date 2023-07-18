@@ -8,7 +8,9 @@ import { createApp } from 'vue'
 // import App from './v-model.vue'
 // import App from './slot.vue'
 // import App from './attr.vue'
-import App from './comp.vue' // 动态组件
+// import App from './comp.vue' // 动态组件
+import App from './router-demo/index.vue' // 动态组件
+import router from '@/router/index.js';
 const app = createApp(App)
 // app.directive('copy', {
 //   mounted(el, binding) {
@@ -46,11 +48,12 @@ let muPlugin = function (app, option) {
   app.config.globalProperties.sayHi = () => {
     console.log('hi');
   }
-  app.components('MyButton', 'div')
-  app.directives('hh', () => {
+  app.component('MyButton', 'div')
+  app.directive('hh', () => {
     console.log('hh');
   })
   app.provide('age', 13)
 }
 app.use(muPlugin, { name: '哈哈' })
+app.use(router)
 app.mount('#app')
