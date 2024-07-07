@@ -9,7 +9,8 @@ import { createApp } from 'vue'
 // import App from './slot.vue'
 // import App from './attr.vue'
 // import App from './comp.vue' // 动态组件
-import App from './router-demo/index.vue' // 动态组件
+// import App from './router-demo/index.vue' // 动态组件
+import App from './sass-media/index.vue' // 动态组件
 import router from '@/router/index.js';
 const app = createApp(App)
 // app.directive('copy', {
